@@ -20,3 +20,12 @@ This could be used for testing the game locally, provided you have the conquest-
 The conquest-engine resides at https://github.com/theaigames/conquest-engine
 
 The executable will communicate with stdin and stdout/stderr, as the game engine requires.
+
+
+Run
+===
+Start the bot by executing:
+
+    ./target/universal/stage/bin/scala-starter-bot
+
+connecting its stdin and stdout to the game engine.
