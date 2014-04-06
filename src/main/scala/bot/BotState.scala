@@ -31,11 +31,6 @@ class BotState {
     }
 
   def setupMap(mapInput: Seq[String]) {
-    var i = 0
-    var regionId = 0
-    var superRegionId = 0
-    var reward = 0
-
     val areaType = mapInput(1)
     val areaSpec = mapInput.drop(2)
     areaType match {
