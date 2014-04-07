@@ -15,18 +15,18 @@ class BotState {
 
   private var myName = ""
   private var myOpponentName = ""
-  var visibleMap = new WorldMap
-  var myPickableStartingRegions = Seq.empty[Region]
-  var opponentMoves = Seq.empty[Move]
-  var startingArmies = -1
-  var roundNumber = 0
+  private var myVisibleMap = new WorldMap
+  private var myPickableStartingRegions = Seq.empty[Region]
+  private var opponentMoves = Seq.empty[Move]
+  private var myStartingArmies = -1
+  private var roundNumber = 0
 
   def updateSettings(key: String, value: String) =
     key match {
       case "your_bot" => myName = value
       case "opponent_bot" => myOpponentName = value
       case "starting_armies" =>
-        startingArmies = value.toInt
+        myStartingArmies = value.toInt
         roundNumber += 1
     }
 
@@ -79,7 +79,7 @@ class BotState {
   }
 
   def updateMap(mapInput: Seq[String]) {
-    visibleMap = fullMap.copy
+    myVisibleMap = fullMap.copy
     mapInput.drop(1).grouped(3) foreach { triple =>
       try {
         val regionOpt = visibleMap.getRegion(triple(0).toInt)
@@ -138,4 +138,8 @@ class BotState {
   def addOpponentMoves(move: Move): Unit = {
     opponentMoves = opponentMoves :+ move
   }
+
+  def visibleMap = myVisibleMap
+
+  def startingArmies = myStartingArmies
 }
